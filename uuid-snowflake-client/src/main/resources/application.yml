@@ -6,7 +6,7 @@ spring:
     port: 6379
     timeout: 5000ms
 server:
-  port: 8121
+  port: 8123
 
 eureka:
   instance:

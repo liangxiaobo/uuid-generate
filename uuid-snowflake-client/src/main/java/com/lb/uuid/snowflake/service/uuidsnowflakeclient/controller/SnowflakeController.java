@@ -24,7 +24,7 @@ public class SnowflakeController {
      * SnowflakeIdGenerator 是个单例模式
      * @return
      */
-    @RequestMapping("/generator/id/")
+    @RequestMapping("/generator/id")
     public Long generatorIdOfLongType(){
         logger.info("生成ID服务的端口：{}, workId: {}, dateCenterId: {}", port, snowflakeDataService.getWorkerId(), snowflakeDataService.getDataCenterId());
         return SnowflakeIdGenerator.getInstance(snowflakeDataService.getWorkerId(), snowflakeDataService.getDataCenterId()).nextId();
