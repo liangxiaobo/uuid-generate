@@ -12,11 +12,12 @@ eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10
     health-check-url-path: /actuator/health
-    prefer-ip-address: true
+#    prefer-ip-address: true
     # 如果是集群模式部署，instance-id值必须设置
     instance-id: ${spring.application.name}:${server.port}:${random.int}
+    hostname: uuid-snowflake-client
 
   client:
     registryFetchIntervalSeconds: 5
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://uuid-eureka-server:8761/eureka/

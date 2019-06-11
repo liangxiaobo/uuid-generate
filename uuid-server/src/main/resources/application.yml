@@ -12,9 +12,11 @@ eureka:
   client:
     registryFetchIntervalSeconds: 5
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://uuid-eureka-server:8761/eureka/
     fetch-registry: true
     register-with-eureka: false
+  instance:
+    hostname: uuid-server
 
 uuid:
   # ID生成器的应用名称
