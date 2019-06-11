@@ -66,8 +66,8 @@
 						<imageTag>${project.version}_${maven.build.timestamp}</imageTag>
 						<imageTag>latest</imageTag>
 					</imageTags>
-					<!--<serverId>${docker.hub.serverid}</serverId>-->
-					<!--<registryUrl>${docker.registry.url}</registryUrl>-->
+					<serverId>${docker.hub.serverid}</serverId>
+					<registryUrl>${docker.registry.url}</registryUrl>
 				</configuration>
 			</plugin>
 		</plugins>
