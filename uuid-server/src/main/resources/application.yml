@@ -2,7 +2,7 @@ spring:
   application:
     name: uuid-server
   redis: # redis配置 ========================
-    host: localhost
+    host: 172.16.10.106
     port: 6379
     timeout: 5000ms
 server:
