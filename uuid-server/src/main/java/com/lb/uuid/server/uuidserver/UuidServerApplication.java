@@ -117,12 +117,19 @@ public class UuidServerApplication {
 
         while (iterator.hasNext()) {
             String item = iterator.next();
-            for (InstanceInfo instanceInfo : currentInstance) {
-                logger.info("比较 === {} == {} = {}", instanceInfo.getInstanceId(), item ,(!instanceInfo.getInstanceId().equals(item)));
+            boolean resultNext = false;
 
-                if (!instanceInfo.getInstanceId().equals(item)) {
-                    oldMap.add(item);
+            for (InstanceInfo instanceInfo : currentInstance) {
+                logger.info("比较 === {} == {} = {}", instanceInfo.getInstanceId(), item ,(instanceInfo.getInstanceId().equals(item)));
+
+                if (instanceInfo.getInstanceId().equals(item)) {
+                    resultNext = true;
+                    break;
                 }
+            }
+
+            if (!resultNext) {
+                oldMap.add(item);
             }
         }
 
