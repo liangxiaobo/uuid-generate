@@ -102,7 +102,7 @@ public class UuidServerApplication {
                 }
 
             }
-        }, 5, configProperties.getTaskExecutionInterval(), TimeUnit.SECONDS);
+        }, configProperties.getTaskExecutionInterval(), configProperties.getTaskExecutionInterval(), TimeUnit.SECONDS);
 
         result.get();
     }
