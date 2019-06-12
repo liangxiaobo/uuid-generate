@@ -73,6 +73,8 @@ public class UuidServerApplication {
                     logger.info("服务应用注册数量： {}", eurekaClient.getApplication(configProperties.getClientApplicationName()).getInstances().size());
                     int appCount = eurekaClient.getApplication(configProperties.getClientApplicationName()).getInstances().size();
 
+                    logger.info("已注册的应用实例列表：{}", eurekaClient.getApplication(configProperties.getClientApplicationName()).getInstances());
+
                     if (app_instance_used_count != appCount) {
                         Set<String> oldMap = filterUsedApp(eurekaClient.getApplication(configProperties.getClientApplicationName()).getInstances(),
                                 redisTemplate.opsForHash().entries(ConfigUtils.APP_INSTANCE_ID_USED_DATA));
@@ -116,6 +118,8 @@ public class UuidServerApplication {
         while (iterator.hasNext()) {
             String item = iterator.next();
             for (InstanceInfo instanceInfo : currentInstance) {
+                logger.info("比较 === {} == {} = {}", instanceInfo.getInstanceId(), item ,(!instanceInfo.getInstanceId().equals(item)));
+
                 if (!instanceInfo.getInstanceId().equals(item)) {
                     oldMap.add(item);
                 }
