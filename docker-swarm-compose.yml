@@ -41,6 +41,9 @@ services:
       replicas: 2
       restart_policy:
         condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 120s
     ports:
       - "8123:8123"
     networks:
