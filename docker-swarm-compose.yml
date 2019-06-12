@@ -1,0 +1,55 @@
+# 执行命令 docker stack deploy -c docker-compose.yml [tack名称]
+# 如果镜像从私库上拉：docker stack deploy -c docker-compose.yml --with-registry-auth [tack名称]
+
+version: '3.3'
+
+services:
+
+  uuid-eureka-server:
+    image: 172.16.10.97:5000/bobo/uuid-eureka-server:latest
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8761:8761"
+    networks:
+      id-overlay-network:
+        aliases:
+          - uuid-eureka-server
+  uuid-server:
+      image: 172.16.10.97:5000/bobo/uuid-server:latest
+      deploy:
+        mode: replicated
+        replicas: 1
+        restart_policy:
+          condition: on-failure
+      ports:
+        - "8082:8082"
+      networks:
+        id-overlay-network:
+          aliases:
+            - uuid-server
+      depends_on:
+        - uuid-eureka-server
+
+  uuid-snowflake-client:
+    image: 172.16.10.97:5000/bobo/uuid-snowflake-client:latest
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8123:8123"
+    networks:
+      id-overlay-network:
+        aliases:
+          - uuid-snowflake-client
+    depends_on:
+      - uuid-server
+
+networks:
+  id-overlay-network:
+    driver: overlay
