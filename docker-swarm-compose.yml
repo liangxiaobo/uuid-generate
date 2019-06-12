@@ -6,7 +6,7 @@ version: '3.3'
 services:
 
   uuid-eureka-server:
-    image: 172.16.10.97:5000/bobo/uuid-eureka-server:latest
+    image: 172.16.10.192:5000/bobo/uuid-eureka-server:latest
     deploy:
       mode: replicated
       replicas: 1
@@ -19,7 +19,7 @@ services:
         aliases:
           - uuid-eureka-server
   uuid-server:
-      image: 172.16.10.97:5000/bobo/uuid-server:latest
+      image: 172.16.10.192:5000/bobo/uuid-server:latest
       deploy:
         mode: replicated
         replicas: 1
@@ -35,7 +35,7 @@ services:
         - uuid-eureka-server
 
   uuid-snowflake-client:
-    image: 172.16.10.97:5000/bobo/uuid-snowflake-client:latest
+    image: 172.16.10.192:5000/bobo/uuid-snowflake-client:latest
     deploy:
       mode: replicated
       replicas: 2
