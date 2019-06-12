@@ -43,6 +43,16 @@ public class SnowflakeRunner implements ApplicationRunner {
         System.out.println(eurekaClient.getApplicationInfoManager().getEurekaInstanceConfig().getInstanceId());
         System.out.println("TestRunner.run =================== ");
 
+        while (true) {
+            if (redisTemplate.opsForHash().size(ConfigUtils.UUID_MAP_KEY) > 0) {
+                break;
+            }
+
+            logger.info("未使用池为空，可能ID-Server服务未启动，等待2秒继续");
+
+            Thread.sleep(2000);
+        }
+
         logger.info("未使用DataPoolMap {} ", redisTemplate.opsForHash().size(ConfigUtils.UUID_MAP_KEY));
 
 
