@@ -122,6 +122,7 @@ public class UuidServerApplication {
 
                 if (!instanceInfo.getInstanceId().equals(item)) {
                     oldMap.add(item);
+                    iterator.remove();
                 }
             }
         }
