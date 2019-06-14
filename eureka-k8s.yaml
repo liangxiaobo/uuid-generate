@@ -25,7 +25,7 @@ spec:
     matchLabels:
       app: uuid-eureka-server
   serviceName: "uuid-eureka-server"
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:
