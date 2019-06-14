@@ -23,5 +23,5 @@ uuid:
   client-application-name: uuid-snowflake-client
   # 机器数量，默认2台，最大31*31=961台
   machine-count: 10
-  # 同步检测已使用池中的数据和eureka注册表中的实例数300秒=5分钟，生产环境设置10分钟以上
-  task-execution-interval: 300
+  # 同步检测已使用池中的数据和eureka注册表中的实例数600秒=10分钟，生产环境设置10分钟以上
+  task-execution-interval: 600
