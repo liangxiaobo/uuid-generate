@@ -59,7 +59,7 @@ public class UuidServerApplication {
      * @throws ExecutionException
      */
     static void scheduleAtFixedRate(EurekaClient eurekaClient, ConfigProperties configProperties, RedisTemplate redisTemplate) throws InterruptedException, ExecutionException {
-        ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(2);
+        ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(1);
         ScheduledFuture<?> result = executorService.scheduleAtFixedRate(new Runnable() {
             public void run() {
                 logger.info("ScheduledExecutorService 执行一次 {}", System.currentTimeMillis());
@@ -72,8 +72,6 @@ public class UuidServerApplication {
                 if (null != eurekaClient.getApplication(configProperties.getClientApplicationName())) {
                     logger.info("服务应用注册数量： {}", eurekaClient.getApplication(configProperties.getClientApplicationName()).getInstances().size());
                     int appCount = eurekaClient.getApplication(configProperties.getClientApplicationName()).getInstances().size();
-
-                    logger.info("已注册的应用实例列表：{}", eurekaClient.getApplication(configProperties.getClientApplicationName()).getInstances());
 
                     if (app_instance_used_count != appCount) {
                         Set<String> oldMap = filterUsedApp(eurekaClient.getApplication(configProperties.getClientApplicationName()).getInstances(),
@@ -111,7 +109,7 @@ public class UuidServerApplication {
     static Set<String> filterUsedApp(List<InstanceInfo> currentInstance, Map<String, Integer> usedAppMap) {
         Set<String> oldMap =new HashSet<>();
 
-        logger.info("filer.usedAppMap == {}", usedAppMap);
+        logger.info("filter.usedAppMap == {}", usedAppMap);
 
         Iterator<String> iterator = usedAppMap.keySet().iterator();
 
@@ -120,8 +118,7 @@ public class UuidServerApplication {
             boolean resultNext = false;
 
             for (InstanceInfo instanceInfo : currentInstance) {
-                logger.info("比较 === {} == {} = {}", instanceInfo.getInstanceId(), item ,(instanceInfo.getInstanceId().equals(item)));
-
+//                logger.info("比较 === {} == {} = {}", instanceInfo.getInstanceId(), item ,(instanceInfo.getInstanceId().equals(item)));
                 if (instanceInfo.getInstanceId().equals(item)) {
                     resultNext = true;
                     break;

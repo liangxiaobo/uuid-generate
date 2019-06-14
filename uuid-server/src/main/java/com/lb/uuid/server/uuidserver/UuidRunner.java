@@ -52,7 +52,9 @@ public class UuidRunner implements ApplicationRunner {
             logger.info("keys ===== {}", keys);
 
         } else {
-            logger.info("map 上一次存的 === {} ", redisTemplate.opsForHash().entries(ConfigUtils.UUID_MAP_KEY));
+            logger.info("未使用池 上一次存的 {} === {} ", redisTemplate.opsForHash().size(ConfigUtils.UUID_MAP_KEY), redisTemplate.opsForHash().entries(ConfigUtils.UUID_MAP_KEY));
+            logger.info("已使用池 上一次存的 {} === {} ", redisTemplate.opsForHash().size(ConfigUtils.UUID_USED_DATA_POOL), redisTemplate.opsForHash().entries(ConfigUtils.UUID_USED_DATA_POOL));
+            logger.info("关联已使用池 上一次存的 {} === {} ", redisTemplate.opsForHash().size(ConfigUtils.APP_INSTANCE_ID_USED_DATA), redisTemplate.opsForHash().entries(ConfigUtils.APP_INSTANCE_ID_USED_DATA));
         }
     }
 
