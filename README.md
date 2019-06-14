@@ -30,7 +30,10 @@
  
  ## 在docker swarm 中部署
  
+ 查看分支 cluster-v1.0
+ 
  * 执行命令
+ 
  ```bash
  docker stack deploy -c docker-swarm-compose.yml --with-registry-auth id-app
  ```
