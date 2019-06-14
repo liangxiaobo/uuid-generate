@@ -28,7 +28,7 @@
     docker push 172.16.10.192:5000/bobo/uuid-snowflake-client
  ```
  
- ## 在docker swarm 中部署
+## 在docker swarm 中部署
  
  查看分支 cluster-v1.0
  
@@ -73,14 +73,14 @@
  
  ```
  
- ## k8s部署
+## k8s部署
  
- ### 需要注意
+### 需要注意
  
     1. 本实例在k8s中 uuid-eureka-server和uuid-server 只部署一个实例
     2. 使用的docker私有库，请参考[k8s 从私有仓库拉取镜像](https://www.jianshu.com/p/3f24bbee72ad)
     
- ### 重新打包上传docker image
+### 重新打包上传docker image
  
  ```bash
     cd uuid-eureka-server/
@@ -93,9 +93,9 @@
     mvn package docker:build -Dmaven.test.skip=true
   ```
   
- ### 重新 docker push image 
+### 重新 docker push image 
     
- ### 执行
+### 执行
  
  1. 先发布Eureka-Server, 执行根目录的 eureka-k8s.yaml
  
@@ -108,7 +108,7 @@
  kubectl create -f uuid-k8s.yaml 
  ```
  
- ### 结果
+### 结果
  
  查看pod
  ```bash
@@ -143,7 +143,7 @@ uuid-snowflake-client-866764b58-nh6gl   1/1     Running   0          50m   10.24
 > 应用关联的种子 和 服务应用注册数量 相等时，表示正常，否则表示有异常
     
  
- # 注意
+# 注意
  
  > uuid-server项目主要工作是初始化 workid和dataCenterId到redis中，并监控redis中的关联池与实际Eureka-server中注册服务的变化，
  监控的任务 ```task-execution-interval: 30```默认30秒执行一次，由于在生产环境中，uuid-snowflake-client注册的数量不确定，所以需要设置足够大的时长，10分钟以上，
