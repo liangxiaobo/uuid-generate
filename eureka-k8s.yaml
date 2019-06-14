@@ -34,12 +34,12 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: uuid-eureka-server
-        env:
+        #env:
         #- name: SPRING_PROFILES_ACTIVE
         #  value: test
-        - name: ADDITIONAL_EUREKA_SERVER_LIST
+        #- name: ADDITIONAL_EUREKA_SERVER_LIST
           #value: "http://eureka-server:8761/eureka"
-          value: "http://uuid-eureka-server-0.uuid-eureka-server.default.svc.cluster.local:8761/eureka,http://uuid-eureka-server-1.uuid-eureka-server.default.svc.cluster.local:8761/eureka,http://uuid-eureka-server-2.uuid-eureka-server.default.svc.cluster.local:8761/eureka"
+        #  value: "http://uuid-eureka-server-0.uuid-eureka-server.default.svc.cluster.local:8761/eureka,http://uuid-eureka-server-1.uuid-eureka-server.default.svc.cluster.local:8761/eureka,http://uuid-eureka-server-2.uuid-eureka-server.default.svc.cluster.local:8761/eureka"
         image:  172.16.10.192:5000/bobo/uuid-eureka-server:latest
         imagePullPolicy: IfNotPresent
         ports:
