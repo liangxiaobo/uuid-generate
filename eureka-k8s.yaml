@@ -35,8 +35,8 @@ spec:
       containers:
       - name: uuid-eureka-server
         env:
-        - name: SPRING_PROFILES_ACTIVE
-          value: test
+        #- name: SPRING_PROFILES_ACTIVE
+        #  value: test
         - name: ADDITIONAL_EUREKA_SERVER_LIST
           #value: "http://eureka-server:8761/eureka"
           value: "http://uuid-eureka-server-0.uuid-eureka-server.default.svc.cluster.local:8761/eureka,http://uuid-eureka-server-1.uuid-eureka-server.default.svc.cluster.local:8761/eureka,http://uuid-eureka-server-2.uuid-eureka-server.default.svc.cluster.local:8761/eureka"
